@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">waafi_clone</string>
+    <string name="title_activity_chats">Chats</string>
+    <string name="title_activity_calls">Calls</string>
+    <string name="title_activity_">Activity</string>
+    <string name="title_activity_scan">Scan</string>
+    <string name="title_activity_money">Money</string>
+    <string name="title_activity_settings">Settings</string>
+</resources>

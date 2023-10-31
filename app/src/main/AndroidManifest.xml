@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Waafi_clone"
+        tools:targetApi="31">
+        <activity
+            android:name=".Settings"
+            android:exported="false"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.Waafi_clone" />
+        <activity
+            android:name=".Money"
+            android:exported="false"
+            android:label="@string/title_activity_money"
+            android:theme="@style/Theme.Waafi_clone" />
+        <activity
+            android:name=".Scan"
+            android:exported="false"
+            android:label="@string/title_activity_scan"
+            android:theme="@style/Theme.Waafi_clone" />
+        <activity
+            android:name=".Activity"
+            android:exported="false"
+            android:label="@string/title_activity_"
+            android:theme="@style/Theme.Waafi_clone" />
+        <activity
+            android:name=".Calls"
+            android:exported="false"
+            android:label="@string/title_activity_calls"
+            android:theme="@style/Theme.Waafi_clone" />
+        <activity
+            android:name=".Chats"
+            android:exported="false"
+            android:label="@string/title_activity_chats"
+            android:theme="@style/Theme.Waafi_clone" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Waafi_clone">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
