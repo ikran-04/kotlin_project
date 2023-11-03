@@ -3,6 +3,7 @@ package com.example.waafi_clone
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -22,12 +23,20 @@ class Calls : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting3("Android")
+                    HomeScreen()
                 }
             }
         }
     }
 }
+
+@Composable
+fun HomeScreen (){
+    Column {
+        Text(text = "|hi")
+    }
+}
+
 
 @Composable
 fun Greeting3(name: String, modifier: Modifier = Modifier) {
@@ -41,6 +50,6 @@ fun Greeting3(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview3() {
     Waafi_cloneTheme {
-        Greeting3("Android")
+        HomeScreen()
     }
 }

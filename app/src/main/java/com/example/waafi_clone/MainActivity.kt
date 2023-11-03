@@ -4,11 +4,22 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Colors
+import androidx.compose.material.Divider
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -22,12 +33,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -59,7 +75,7 @@ class MainActivity : ComponentActivity() {
             Waafi_cloneTheme {
                 val items = listOf(
                     BottomNavigationItem(
-                        title = "Chats",
+                        title = "Chat",
                         selectedIcon = painterResource(id = R.drawable.chat),
                         unselectedIcon = painterResource(id = R.drawable.chat),
                         hasNews = false,
@@ -73,8 +89,8 @@ class MainActivity : ComponentActivity() {
                     ),
                     BottomNavigationItem(
                         title = "",
-                        selectedIcon = painterResource(id = R.drawable.settings),
-                        unselectedIcon = painterResource(id = R.drawable.settings),
+                        selectedIcon = painterResource(id = R.drawable.qr_code,),
+                        unselectedIcon = painterResource(id = R.drawable.qr_code),
                         hasNews = false,
                     ),
                     BottomNavigationItem(
@@ -101,8 +117,9 @@ class MainActivity : ComponentActivity() {
                         bottomBar = {
                             NavigationBar(
                                 containerColor = Color.White,
-                                modifier = Modifier.border(2.dp , color = Color.Red
-                                )
+                                modifier = Modifier
+                                    .padding(bottom = 10.dp)
+
 
                             ) {
 
@@ -117,7 +134,8 @@ class MainActivity : ComponentActivity() {
 
                                         icon = {
                                             BadgedBox(
-                                                badge = {
+
+                                                        badge = {
                                                     if (item.badgeCount != null) {
                                                         Badge {
                                                             Text(text = item.badgeCount.toString())
@@ -129,12 +147,43 @@ class MainActivity : ComponentActivity() {
                                                 }
                                             ) {
 
+                                                if(index == 2){
+                                                    Box(
+//                                                        contentAlignment = Alignment.Center,
+                                                        modifier = Modifier
+                                                            .size(60.dp)
+                                                    // Size of the circle
+//                                                            .zIndex(3f) //
+                                                            // Make sure the circle is drawn over the icon
+                                                    ) {
+                                                            Box(
+                                                                modifier = Modifier
+                                                                    .size(60.dp) // Size of the icon
+                                                                    .background(
+                                                                        Color(0xFF13BF8F),
+                                                                        CircleShape
+                                                                    )
+
+                                                                // Circle background
+                                                            ){
+
+
+                                                            }
+                                                        }
+
+                                                }
+
                                                 Icon(
+
                                                     painter = if (index == selectedItemIndex) {
                                                         item.selectedIcon
+
                                                     } else item.unselectedIcon,
-                                                    contentDescription = item.title
+                                                    contentDescription = item.title,
+                                                    tint = Color.Unspecified
                                                 )
+
+
 
 
                                             }
@@ -149,11 +198,11 @@ class MainActivity : ComponentActivity() {
                     {
                         NavHost(
                             navController = navController,
-                            startDestination = Screens.Calls.route
+                            startDestination = Screens.Chat.route
                         ) {
 
-                            composable(Screens.Calls.route) { Calls() }
-                            composable(Screens.Chat.route) { Chats() }
+                            composable(Screens.Chat.route) { ChatsScreen() }
+                            composable(Screens.Calls.route) { Chats() }
                             composable(Screens.Money.route) { Money() }
 
                         }
