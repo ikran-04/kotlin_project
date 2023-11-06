@@ -25,6 +25,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -125,11 +126,17 @@ class MainActivity : ComponentActivity() {
 
                                 items.forEachIndexed { index, item ->
                                     NavigationBarItem(
+                                        
                                         selected = selectedItemIndex == index,
                                         onClick = {
                                             selectedItemIndex = index
                                             navController.navigate(item.title)
                                         },
+                                        colors = NavigationBarItemDefaults.colors(
+                                            indicatorColor = Color.White,
+                                            selectedIconColor = Color(0xFF1FB289),
+                                            selectedTextColor = Color(0xFF1FB289)
+                                        ),
                                         label = { Text(text = item.title) },
 
                                         icon = {
@@ -148,6 +155,7 @@ class MainActivity : ComponentActivity() {
                                             ) {
 
                                                 if(index == 2){
+
                                                     Box(
 //                                                        contentAlignment = Alignment.Center,
                                                         modifier = Modifier
@@ -175,12 +183,13 @@ class MainActivity : ComponentActivity() {
 
                                                 Icon(
 
+
                                                     painter = if (index == selectedItemIndex) {
                                                         item.selectedIcon
 
+
                                                     } else item.unselectedIcon,
                                                     contentDescription = item.title,
-                                                    tint = Color.Unspecified
                                                 )
 
 
@@ -202,7 +211,7 @@ class MainActivity : ComponentActivity() {
                         ) {
 
                             composable(Screens.Chat.route) { ChatsScreen() }
-                            composable(Screens.Calls.route) { Chats() }
+                            composable(Screens.Calls.route) { callsScreen() }
                             composable(Screens.Money.route) { Money() }
 
                         }
