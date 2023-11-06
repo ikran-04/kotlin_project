@@ -4,9 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
@@ -24,15 +27,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.waafi_clone.ui.theme.Waafi_cloneTheme
 
 data class TabItem(
     val title:String,
-    val unSelectedIcon: ImageVector,
-    val selectedIcon: ImageVector,
+
 
     )
 class Calls : ComponentActivity() {
@@ -60,21 +66,18 @@ class Calls : ComponentActivity() {
 fun callsScreen (){
     val tabItems = listOf(
         TabItem(
-            title="Home",
-            unSelectedIcon = Icons.Outlined.Home,
-            selectedIcon = Icons.Filled.Home,
+            title="Recents",
+//
 
             ),
         TabItem(
-            title="contacts",
-            unSelectedIcon = Icons.Outlined.Home,
-            selectedIcon = Icons.Filled.Home,
+            title="Contacts",
+//
 
             ),
         TabItem(
-            title="money",
-            unSelectedIcon = Icons.Outlined.Home,
-            selectedIcon = Icons.Filled.Home,
+            title="Balance",
+
 
             )
     )
@@ -93,25 +96,38 @@ fun callsScreen (){
             selectedTabIndex = pagerState.currentPage
         }
     }
-    Column(modifier = Modifier.fillMaxSize()) {
+    Row (
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp)
+
+    ) {
+        Text(text = "Chats")
+        Icon(painter = painterResource(id = R.drawable.edit), contentDescription = null ,tint = Color.Unspecified)
+    }
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(top = 50.dp, start = 10.dp , end = 10.dp)
+    ) {
         TabRow(selectedTabIndex = selectedTabIndex) {
 
             tabItems.forEachIndexed { index, item ->
-                Tab(selected = index == selectedTabIndex,
+                Tab(
+                    modifier = Modifier
+                        .padding(vertical = 5.dp),
+
+                    selected = index == selectedTabIndex,
                     onClick = { selectedTabIndex = index },
+
                     text = {
                         Text(
                             text = item.title
                         )
+
                     },
-                    icon = {
-                        Icon(
-                            imageVector = if (index == selectedTabIndex) {
-                                item.selectedIcon
-                            } else item.unSelectedIcon,
-                            contentDescription = null
-                        )
-                    }
+
                 )
             }
 
@@ -130,9 +146,7 @@ fun callsScreen (){
 
         }
     }
-    Column {
-        Text(text = "|hi")
-    }
+
 }
 
 

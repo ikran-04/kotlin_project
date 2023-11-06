@@ -36,6 +36,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -62,7 +63,7 @@ data class BottomNavigationItem(
     val selectedIcon: Painter,
     val unselectedIcon: Painter,
     val hasNews: Boolean,
-    val badgeCount: Int? = null
+//    val badgeCount: Int? = null
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,7 +87,7 @@ class MainActivity : ComponentActivity() {
                         selectedIcon = painterResource(id = R.drawable.calls),
                         unselectedIcon = painterResource(id = R.drawable.calls),
                         hasNews = false,
-                        badgeCount = 4
+//                        badgeCount = 4
                     ),
                     BottomNavigationItem(
                         title = "",
@@ -140,63 +141,73 @@ class MainActivity : ComponentActivity() {
                                         label = { Text(text = item.title) },
 
                                         icon = {
-                                            BadgedBox(
 
-                                                        badge = {
-                                                    if (item.badgeCount != null) {
-                                                        Badge {
-                                                            Text(text = item.badgeCount.toString())
-                                                        }
-                                                    } else if (item.hasNews) {
-                                                        Badge()
-                                                    }
-
-                                                }
-                                            ) {
 
                                                 if(index == 2){
 
+//                                                    Box(
+////                                                        contentAlignment = Alignment.Center,
+//                                                        modifier = Modifier
+//                                                            .size(60.dp)
+//                                                    // Size of the circle
+////                                                            .zIndex(3f) //
+//                                                            // Make sure the circle is drawn over the icon
+//                                                    ) {
+//                                                            Box(
+//                                                                modifier = Modifier
+//                                                                    .size(60.dp) // Size of the icon
+//                                                                    .background(
+//                                                                        Color(0xFF13BF8F),
+//                                                                        CircleShape
+//                                                                    )
+//
+//                                                                // Circle background
+//                                                            ){
+//
+//
+//                                                            }
+//                                                        }
                                                     Box(
-//                                                        contentAlignment = Alignment.Center,
                                                         modifier = Modifier
-                                                            .size(60.dp)
-                                                    // Size of the circle
-//                                                            .zIndex(3f) //
-                                                            // Make sure the circle is drawn over the icon
+                                                            .size(50.dp)
+                                                            .clip(CircleShape)
+                                                            .background(Color(0xFF13BF8F)),
+                                                        contentAlignment = Alignment.Center
                                                     ) {
-                                                            Box(
-                                                                modifier = Modifier
-                                                                    .size(60.dp) // Size of the icon
-                                                                    .background(
-                                                                        Color(0xFF13BF8F),
-                                                                        CircleShape
-                                                                    )
+                                                        Icon(
+                                                            tint= Color.White,
+                                                            painter = items[2].selectedIcon,
+                                                            contentDescription = "Home icon",
 
-                                                                // Circle background
-                                                            ){
+                                                            modifier = Modifier
+                                                                .size(28.dp)
+//                                                                .tint(Color.White)
+                                                        )
+                                                    }
+
+                                                }else{
+                                                    Icon(
 
 
-                                                            }
-                                                        }
+                                                        painter = if (index == selectedItemIndex) {
+                                                            item.selectedIcon
 
+
+                                                        } else item.unselectedIcon,
+                                                        contentDescription = item.title,
+                                                        modifier = Modifier
+                                                            .size(20.dp)
+                                                    )
                                                 }
 
-                                                Icon(
 
 
-                                                    painter = if (index == selectedItemIndex) {
-                                                        item.selectedIcon
-
-
-                                                    } else item.unselectedIcon,
-                                                    contentDescription = item.title,
-                                                )
 
 
 
 
                                             }
-                                        }
+
                                     )
                                 }
                             }

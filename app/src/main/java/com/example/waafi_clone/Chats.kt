@@ -90,7 +90,7 @@ fun ChatsScreen(){
         modifier = Modifier.fillMaxWidth().fillMaxHeight()
     ){
 
-        Image(painter = painterResource(id = R.drawable.not_found), contentDescription = null , modifier = Modifier.padding(vertical = 10.dp))
+        Image(painter = painterResource(id = R.drawable.calss_image), contentDescription = null , modifier = Modifier.padding(vertical = 10.dp))
         Text(text = "No Chats Yet" , fontWeight = FontWeight.Bold, fontSize = 15.sp)
         Text(text = "Get Started By messaging a contact.." , color = Color.Gray, fontSize = 12.sp)
     }
