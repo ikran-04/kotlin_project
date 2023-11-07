@@ -200,13 +200,23 @@ fun Balance(){
         }
 
         Row (
-//            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 10.dp , horizontal = 20.dp)
         ) {
             IconText(icon = add , text = "Add Credits")
             IconText(icon = buy , text = "Buy Bundle")
+        }
+
+        Column (
+            horizontalAlignment =Alignment.CenterHorizontally,
+//            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth().fillMaxHeight()
+        ){
+
+            Image(painter = painterResource(id = R.drawable.recents), contentDescription = null , modifier = Modifier.padding(vertical = 10.dp))
+            Text(text = "Your active bundles will appear here" , fontSize = 15.sp)
         }
     }
 
@@ -217,19 +227,21 @@ fun Balance(){
 fun IconText(text:String , icon: Painter) {
     // Create a row that wraps the content size
     Box (modifier = Modifier
-//        .wrapContentSize()
+        .wrapContentSize()
         .clip(
             RoundedCornerShape(5.dp)
         )
+        .fillMaxWidth()
     ){
         Row(
             verticalAlignment = Alignment.CenterVertically,
 
             modifier = Modifier
                 .wrapContentSize()
-                .fillMaxWidth(0.5f)
+                .fillMaxWidth().width(20.dp)
                 .background(Color(0xFFF4F4F4))
                 .padding(10.dp)
+
         ) {
             Image(
                 painter = icon,
@@ -253,19 +265,3 @@ fun IconText(text:String , icon: Painter) {
     }
 }
 
-
-@Composable
-fun Greeting3(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview3() {
-    Waafi_cloneTheme {
-        callsScreen()
-    }
-}
