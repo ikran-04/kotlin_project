@@ -145,28 +145,6 @@ class MainActivity : ComponentActivity() {
 
                                                 if(index == 2){
 
-//                                                    Box(
-////                                                        contentAlignment = Alignment.Center,
-//                                                        modifier = Modifier
-//                                                            .size(60.dp)
-//                                                    // Size of the circle
-////                                                            .zIndex(3f) //
-//                                                            // Make sure the circle is drawn over the icon
-//                                                    ) {
-//                                                            Box(
-//                                                                modifier = Modifier
-//                                                                    .size(60.dp) // Size of the icon
-//                                                                    .background(
-//                                                                        Color(0xFF13BF8F),
-//                                                                        CircleShape
-//                                                                    )
-//
-//                                                                // Circle background
-//                                                            ){
-//
-//
-//                                                            }
-//                                                        }
                                                     Box(
                                                         modifier = Modifier
                                                             .size(50.dp)
